@@ -1,0 +1,41 @@
+version: "3.3"
+services:
+    cp_nginx:
+        image: phalconphp/nginx
+        container_name: cp_nginx
+        ports:
+            - "7903:80"
+        volumes:
+            - ../app:/app
+            - ./nginx/default.conf:/etc/nginx/sites-available/default.conf
+            - ./nginx/default.conf:/etc/nginx/sites-enabled/default.conf
+        depends_on:
+            - cp_php
+    cp_php:
+        build:
+            context: ./phalcon
+            dockerfile: Dockerfile
+        entrypoint: ""
+        command: bash -c "php-fpm7.0 -F"
+        container_name: cp_phalcon
+        working_dir: /app
+        ports:
+            - "9900:9000"
+            - "9901:9001"
+        volumes:
+            - ../app:/app
+        environment:
+            PHP_IDE_CONFIG: "serverName=codePilots"
+        dns: 8.8.8.8
+    cp_mysql:
+        image: mysql:latest
+        container_name: cp_mysql
+        ports:
+            - "3310:3306"
+        volumes:
+            - ./mysql/database.sql:/docker-entrypoint-initdb.d/dump.sql
+        environment:
+            MYSQL_DATABASE: test_task
+            MYSQL_USER: test_task
+            MYSQL_PASSWORD: test_task
+            MYSQL_ROOT_PASSWORD: test_task

@@ -1,5 +1,11 @@
 version: "3.3"
 services:
+    cp_composer:
+        image: composer/composer:php7
+        container_name: cp_composer
+        command: update --lock --ignore-platform-reqs
+        volumes:
+            - ../app:/app
     cp_nginx:
         image: phalconphp/nginx
         container_name: cp_nginx

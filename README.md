@@ -8,7 +8,6 @@ git clone https://github.com/jumper423/code-pilots-test-task.git
 cd path/to/docker
 docker-compose up -d
 # для принятия дополнительных изменений таблиц
-cd path/to/
 init.sh
 ```
 

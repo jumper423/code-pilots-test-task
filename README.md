@@ -9,3 +9,6 @@ docker-compose up -d
 cd path/to/
 init.sh
 ```
+
+http://test:9980/api/Table
+http://test:9980/api/SessionSubscribe

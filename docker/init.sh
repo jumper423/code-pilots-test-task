@@ -1,2 +1,2 @@
 #!/bin/sh
-docker-compose exec -it cp_php -c "php init.php"
+docker-compose exec cp_php /bin/bash -c "php init.php"

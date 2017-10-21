@@ -20,13 +20,13 @@ abstract class Model
         $whereParams = [];
         foreach ($params as $name => $param) {
             $whereString[] = "{$name} = :{$name}";
-            $whereParams[$name] = [$name, \PDO::PARAM_STR];
+            $whereParams[$name] = [$param, \PDO::PARAM_STR];
         }
-        $row = App::i()->getDB()->row('SELECT * FROM '. static::getTableName().' WHERE ' . implode($whereString), $whereParams);
+        $row = App::i()->getDB()->row('SELECT * FROM `'. static::getTableName().'` WHERE ' . implode($whereString), $whereParams);
         if ($row) {
-            return new static($row);
+            return new static((array)$row);
         } else {
-            return null;
+            return false;
         }
     }
 }

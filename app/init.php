@@ -14,4 +14,4 @@ $sl->set('db', new \core\Mysql([
 
 \core\App::i()->setSL($sl);
 
-\core\App::i()->getDB()->query(file_get_contents(__DIR__ . '/init.php'));
+\core\App::i()->getDB()->query(file_get_contents(__DIR__ . '/migration.sql'));

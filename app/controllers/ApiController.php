@@ -40,13 +40,13 @@ class ApiController extends Controller
         }
         App::i()->getDB()->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;");
         App::i()->getDB()->begin();
-        App::i()->getDB()->query("INSERT INTO SessionSubscribe (SessionID, UserID) VALUES (:sessionId, :userId) ON DUPLICATE KEY UPDATE UserID = :userId", [
+        App::i()->getDB()->query("INSERT INTO SessionUser (SessionID, UserID) VALUES (:sessionId, :userId) ON DUPLICATE KEY UPDATE UserID = :userId", [
             'sessionId' => [$sessionId, \PDO::PARAM_INT],
             'userId' => [$user->getId(), \PDO::PARAM_INT],
         ]);
-        if (App::i()->getDB()->columnValue("SELECT COUNT(*) FROM SessionSubscribe WHERE SessionID = :sessionId", [
+        if (App::i()->getDB()->columnValue("SELECT COUNT(*) FROM SessionUser WHERE SessionID = :sessionId", [
                 'sessionId' => [$sessionId, \PDO::PARAM_INT],
-            ]) <= App::i()->getDB()->columnValue("SELECT NumberOfSeats FROM Session WHERE ID = :sessionId", [
+            ]) <= App::i()->getDB()->columnValue("SELECT NumberOfPlaces FROM Session WHERE ID = :sessionId", [
                 'sessionId' => [$sessionId, \PDO::PARAM_INT],
             ])) {
             App::i()->getDB()->commit();

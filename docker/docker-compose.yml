@@ -10,7 +10,7 @@ services:
         image: phalconphp/nginx
         container_name: cp_nginx
         ports:
-            - "7903:80"
+            - "9980:80"
         volumes:
             - ../app:/app
             - ./nginx/default.conf:/etc/nginx/sites-available/default.conf

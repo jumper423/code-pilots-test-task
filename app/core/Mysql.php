@@ -2,9 +2,10 @@
 
 namespace core;
 
+use core\interfaces\DBInterface;
 use PDO;
 
-class DB
+class Mysql implements DBInterface
 {
     /**
      * @var \PDO

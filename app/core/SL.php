@@ -2,13 +2,15 @@
 
 namespace core;
 
+use core\interfaces\SLInterface;
+
 /**
  * Service Locator
  *
  * Class SL
  * @package core
  */
-class SL
+class SL implements SLInterface
 {
     /**
      * @var array

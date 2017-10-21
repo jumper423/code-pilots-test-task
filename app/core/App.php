@@ -1,6 +1,9 @@
 <?php
 
 namespace core;
+use core\interfaces\DBInterface;
+use core\interfaces\RouterInterface;
+use core\interfaces\SLInterface;
 
 /**
  * Class App
@@ -37,33 +40,33 @@ class App
     }
 
     /**
-     * @return SL
+     * @return SLInterface
      */
-    public function getSL(): SL
+    public function getSL(): SLInterface
     {
         return $this->sl;
     }
 
     /**
-     * @param SL $sl
+     * @param SLInterface $sl
      */
-    public function setSL(SL $sl)
+    public function setSL(SLInterface $sl)
     {
         $this->sl = $sl;
     }
 
     /**
-     * @return DB
+     * @return DBInterface
      */
-    public function getDB(): DB
+    public function getDB(): DBInterface
     {
         return $this->sl->get('db');
     }
 
     /**
-     * @return Router
+     * @return RouterInterface
      */
-    public function getRouter(): Router
+    public function getRouter(): RouterInterface
     {
         return $this->sl->get('router');
     }

@@ -2,11 +2,13 @@
 
 namespace core;
 
+use core\interfaces\RouterInterface;
+
 /**
  * Class Router
  * @package core
  */
-class Router
+class Router implements RouterInterface
 {
     private $namespace;
 
@@ -18,7 +20,7 @@ class Router
     /**
      * @return array
      */
-    private function urlParsing()
+    private function urlParsing(): array
     {
         $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         return [
@@ -41,6 +43,6 @@ class Router
             throw new \Exception('Controller not found');
         }
         $controller = new $controller();
-        return $controller->{lcfirst($url['action']) . 'Action'}($url['params']);
+        return $controller->{lcfirst($url['action']) . 'Action'}(new Request($url['params']));
     }
 }

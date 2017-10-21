@@ -37,7 +37,7 @@ services:
         image: mysql:latest
         container_name: cp_mysql
         ports:
-            - "3310:3306"
+            - "3390:3306"
         volumes:
             - ./mysql/database.sql:/docker-entrypoint-initdb.d/dump.sql
         environment:

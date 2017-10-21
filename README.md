@@ -5,10 +5,10 @@ https://code-pilots.ru/test-task/
 ```
 git clone https://github.com/jumper423/code-pilots-test-task.git
 
-cd path/to/docker
+cd code-pilots-test-task/docker
 docker-compose up -d
 # для принятия дополнительных изменений таблиц
-init.sh
+sh init.sh
 ```
 
 http://test:9980/api/Table
